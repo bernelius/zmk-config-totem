@@ -1,45 +1,45 @@
 layout: {zmk_keyboard: totem}
 layers:
   base:
-  - Q
-  - W
-  - E
-  - R
-  - T
-  - Y
-  - U
-  - I
-  - O
-  - P
-  - A
-  - S
-  - D
   - F
-  - G
-  - H
-  - J
-  - K
+  - P
+  - D
   - L
-  - {t: ;, s: ':'}
-  - $$mdi:apple-keyboard-control$$
-  - Z
   - X
-  - C
-  - V
+  - {t: ;, s: ':'}
+  - U
+  - O
+  - Y
   - B
-  - N
-  - M
+  - S
+  - {t: N, h: '$$mdi:apple-keyboard-control$$'}
+  - {t: T, h: '$$mdi:apple-keyboard-option$$'}
+  - {t: H, h: LGUI}
+  - K
   - {t: ',', s: <}
+  - {t: A, h: RGUI}
+  - {t: E, h: '$$mdi:apple-keyboard-option$$'}
+  - {t: I, h: '$$mdi:apple-keyboard-control$$'}
+  - C
+  - {t: '$$mdi:keyboard-esc$$', h: '$$mdi:apple-keyboard-control$$'}
+  - V
+  - W
+  - G
+  - M
+  - J
+  - {t: '-', s: _}
   - {t: ., s: '>'}
-  - {t: /, s: '?'}
   - {t: '''', s: '"'}
-  - LGUI
-  - sym_func
-  - nav_num
+  - Z
+  - Q
+  - {t: /, s: '?'}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - R
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:keyboard-space$$
   - $$mdi:apple-keyboard-shift$$
   - $$mdi:apple-keyboard-option$$
-  nav_num:
+  nav:
   - {t: 'Alt+$$mdi:backspace$$', type: backspace}
   - {t: '$$mdi:backspace$$', type: backspace}
   - $$mdi:arrow-up-bold$$
@@ -74,7 +74,7 @@ layers:
   - ^
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {type: held}
+  - {t: '$$mdi:transfer$$', type: trans}
   - {t: '=', s: +}
   - $$mdi:apple-keyboard-shift$$
   - '%'
@@ -112,7 +112,7 @@ layers:
   - F15
   - F16
   - {t: '$$mdi:transfer$$', type: trans}
-  - {type: held}
+  - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:apple-keyboard-shift$$
@@ -151,8 +151,19 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:bluetooth-off$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: held}
-  - {t: '$$mdi:minus-circle-outline$$', type: held}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+combos:
+- p: [1, 2]
+  k: '&apos_inside'
+- p: [2, 3]
+  k: '&parens_inside'
+- p: [11, 12]
+  k: '&quotes_inside'
+- p: [12, 13]
+  k: '&brackets_inside'
+- p: [23, 24]
+  k: '&braces_inside'
