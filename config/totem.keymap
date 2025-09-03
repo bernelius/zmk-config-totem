@@ -14,6 +14,7 @@
 #define RIGHT_HAND_KEYS 5 6 7 8 9 15 16 17 18 19 26 27 28 29 30 31 35 36 37
 #define LEFT_LEFT_COLUMN 20
 #define QUICK_TAP_MS 175
+#define COMBO_TIMEOUT 30
 #define ___ &trans
 #define XXX &none
 
@@ -70,34 +71,40 @@
     combos {
         compatible = "zmk,combos";
         combo_inside_apos {
-            timeout-ms = <30>;
+            timeout-ms = <COMBO_TIMEOUT>;
             key-positions = <1 2>;
             bindings = <&apos_inside>;
         };
         compatible = "zmk,combos";
         combo_inside_parens {
-            timeout-ms = <30>;
+            timeout-ms = <COMBO_TIMEOUT>;
             key-positions = <2 3>;
             bindings = <&parens_inside>;
         };
         compatible = "zmk,combos";
         combo_inside_quotes {
-            timeout-ms = <30>;
+            timeout-ms = <COMBO_TIMEOUT>;
             key-positions = <11 12>;
             bindings = <&quotes_inside>;
         };
         compatible = "zmk,combos";
         combo_inside_brackets {
-            timeout-ms = <30>;
+            timeout-ms = <COMBO_TIMEOUT>;
             key-positions = <12 13>;
             bindings = <&brackets_inside>;
         };
         compatible = "zmk,combos";
         combo_inside_braces {
-            timeout-ms = <30>;
+            timeout-ms = <COMBO_TIMEOUT>;
             key-positions = <23 24>;
             bindings = <&braces_inside>;
         };
+        compatible = "zmk,combos";
+        combo_tab {
+          timeout-ms = <COMBO_TIMEOUT>;
+          key-positions = <0 1>;
+          bindings = <&kp TAB>;
+        }
         // compatible = "zmk,combos";
         // combo_inside_tags {
         //      timeout-ms = <30>;
@@ -141,7 +148,7 @@
 
 
     keymap {
-        compatible = "zmk,keymap";
+        compatible = "zmk,keymap";       // missing tab, enter
 
       layer0  {
             display-name = "base";
@@ -149,11 +156,11 @@
 //                ╭──────0─────┬──────1────────┬───────2───────┬───────3────────┬─────4──────╮ ╭─────5──────┬───────6───────┬───────7───────┬───────8───────┬─────9─────╮
                    &kp F        &kp P           &kp D           &kp L            &kp X          &kp SEMI     &kp U           &kp O           &kp Y           &kp B
 //                ├─────10─────┼──────11───────┼───────12──────┼───────13───────┼─────14─────┤ ├────15──────┼──────16───────┼──────17───────┼──────18───────┼────19─────┤
-                   &kp S        &hml LCTRL N    &hml LALT T     &hml LGUI H      &kp K          &kp COMMA    &hmr RGUI A     &hmr RALT E     &hmr RCTRL I    &kp C       
+                   &hmr LSHFT S &hml LCTRL N    &hml LALT T     &hml LGUI H      &kp K          &kp COMMA    &hmr RGUI A     &hmr RALT E     &hmr RCTRL I    &hmr RSHFT C       
 //╭──────20───────┼─────21─────┼──────22───────┼───────23──────┼───────24───────┼─────25─────┤ ├────26──────┼──────27───────┼──────28───────┼──────29───────┼────30─────┼──────31───────╮
-   &mt LCTRL ESC   &kp V        &kp W           &kp G           &kp M            &kp J          &kp MINUS    &kp DOT         &kp APOS        &kp Z           &kp Q       &kp SLASH
+   &mt LCTRL ESC   &kp V        &kp W           &kp G           &kp M            &kp J          &kp MINUS    &kp DOT         &kp APOS        &kp Q           &kp Z       &kp SLASH
 //╰───────────────┴────────────┴───────────────┼───────32──────┼───────33───────┼─────34─────┤ ├────35──────┼──────36───────┼──────37───────┼───────────────┴───────────┴───────────────╯
-                                                XXX             &kp R            XXX            &kp SPACE    &kp LEFT_SHIFT  &kp RIGHT_ALT       
+                                                XXX             &kp R            XXX            &lt 1 BSPC   &mt RSHFT SPACE &lt 2 DELETE
 //                                             ╰───────────────┴────────────────┴────────────╯ ╰────────────┴───────────────┴───────────────╯
                  >;
       };
@@ -161,11 +168,17 @@
       layer1 {
             display-name = "nav";
             bindings = <
-                   &kp LA(BACKSPACE)   &kp BACKSPACE  &kp UP     &kp DELETE     &kp LA(DELETE)        &kp N5      &kp N6           &kp N7       &kp N8    &kp N9
-                   &kp LA(LEFT_ARROW)  &kp LEFT       &kp DOWN   &kp RIGHT      &kp LA(RIGHT)         &kp N0      &kp N1           &kp N2       &kp N3    &kp N4
-&kp LG(BACKSPACE)  &kp LG(UP_ARROW)    &kp LG(LEFT)   &kp ENTER  &kp LG(RIGHT)  &kp LG(DOWN_ARROW)    &kp PERIOD  &kp PLUS         &kp MINUS    &kp STAR  &kp FSLH  &kp CARET
-                                                      &trans     &trans         &trans                &kp EQUAL   &kp RIGHT_SHIFT  &kp PERCENT
-            >;
+//                ╭──────0─────┬──────1────────┬───────2───────┬───────3────────┬─────4──────╮ ╭─────5──────┬───────6───────┬───────7───────┬───────8───────┬─────9─────╮
+                   ___          &kp N7          &kp N8          &kp N9           ___            ___          ___             &kp UP          ___             ___ 
+//                ├─────10─────┼──────11───────┼───────12──────┼───────13───────┼─────14─────┤ ├────15──────┼──────16───────┼──────17───────┼──────18───────┼────19─────┤
+                   &mt LSHFT N0 &mt LCTRL N4    &mt LALT N5     &mt LGUI N6      ___            ___          &mt RGUI LEFT   &mt RALT DOWN   &mt RCTRL RIGHT ___
+//╭──────20───────┼─────21─────┼──────22───────┼───────23──────┼───────24───────┼─────25─────┤ ├────26──────┼──────27───────┼──────28───────┼──────29───────┼────30─────┼──────31───────╮
+   ___             ___          &kp N1          &kp N2          &kp N3           ___            ___          ___             ___             ___             ___         ___
+//╰───────────────┴────────────┴───────────────┼───────32──────┼───────33───────┼─────34─────┤ ├────35──────┼──────36───────┼──────37───────┼───────────────┴───────────┴───────────────╯
+                                                ___             ___              ___            ___          ___             ___         
+//                                             ╰───────────────┴────────────────┴────────────╯ ╰────────────┴───────────────┴───────────────╯
+              >;
+
         };
 
         sym_func {
@@ -190,8 +203,20 @@
 
         extra2 { status = "reserved"; };
 
-        extra3 { status = "reserved"; };
-    };
+        extra3 {
+            display-name = "clear";
+            bindings = <
+//                ╭──────0─────┬──────1────────┬───────2───────┬───────3────────┬─────4──────╮ ╭─────5──────┬───────6───────┬───────7───────┬───────8───────┬─────9─────╮
+                   ___          ___             ___             ___              ___            ___          ___             ___             ___             ___ 
+//                ├─────10─────┼──────11───────┼───────12──────┼───────13───────┼─────14─────┤ ├────15──────┼──────16───────┼──────17───────┼──────18───────┼────19─────┤
+                   ___          ___             ___             ___              ___            ___          ___             ___             ___             ___
+//╭──────20───────┼─────21─────┼──────22───────┼───────23──────┼───────24───────┼─────25─────┤ ├────26──────┼──────27───────┼──────28───────┼──────29───────┼────30─────┼──────31───────╮
+   ___             ___          ___             ___             ___              ___            ___          ___             ___             ___             ___         ___
+//╰───────────────┴────────────┴───────────────┼───────32──────┼───────33───────┼─────34─────┤ ├────35──────┼──────36───────┼──────37───────┼───────────────┴───────────┴───────────────╯
+                                                ___             ___              ___            ___          ___             ___         
+//                                             ╰───────────────┴────────────────┴────────────╯ ╰────────────┴───────────────┴───────────────╯
+  >;
+  };
 
     conditional_layers {
         compatible = "zmk,conditional-layers";
