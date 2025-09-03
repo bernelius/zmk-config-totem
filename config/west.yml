@@ -21,11 +21,15 @@ manifest:
       url-base: https://github.com/urob
   projects:
     - name: zmk
-      remote: urob # or zmkfirmware, see comment below
-      revision: v0.2+fix-child-nodes
+      remote: zmkfirmware
+      revision: v0.3.0
       import: app/west.yml
-    - name: zmk-adaptive-key
+    # Apply patch to fix child nodes issue
+    - name: zephyr
       remote: urob
-      revision: v0.2 # set to same as ZMK version above
+      revision: v3.5.0+zmk-fixes
+      clone-depth: 1
+      import:
+        name-allowlist: [lvgl]
   self:
     path: config
