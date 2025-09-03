@@ -66,6 +66,18 @@
             hold-trigger-key-positions = <LEFT_HAND_KEYS>;
             hold-trigger-on-release;
         };
+        alt-repeat: shift-repeat {
+            compatible = "zmk,behavior-adaptive-key";
+            #binding-cells = <0>;
+            bindings = <&sk RSHIFT>;
+
+            repeat {
+                trigger-keys = <A B C D E F G H I J K L M N O P Q R S T U V W X Y Z>;
+                bindings = <&key_repeat>;
+                max-prior-idle-ms = <350>;
+                strict-modifiers;
+            };
+        };
     };
 
     combos {
@@ -154,13 +166,13 @@
             display-name = "base";
             bindings = <
 //                ╭──────0─────┬──────1────────┬───────2───────┬───────3────────┬─────4──────╮ ╭─────5──────┬───────6───────┬───────7───────┬───────8───────┬─────9─────╮
-                   &kp F        &kp P           &kp D           &kp L            &kp X          &kp SEMI     &kp U           &kp O           &kp Y           &kp B
+                   &kp Q        &kp W           &kp F           &kp L            &kp X          &kp J        &kp L           &kp U           &kp Y           &kp SEMI
 //                ├─────10─────┼──────11───────┼───────12──────┼───────13───────┼─────14─────┤ ├────15──────┼──────16───────┼──────17───────┼──────18───────┼────19─────┤
-                   &hmr LSHFT S &hml LCTRL N    &hml LALT T     &hml LGUI H      &kp K          &kp COMMA    &hmr RGUI A     &hmr RALT E     &hmr RCTRL I    &hmr RSHFT C       
+                   &hmr LSHFT A &hml LCTRL R    &hml LALT S     &hml LGUI T      &kp G          &kp M        &hmr RGUI N     XXX             &hmr RCTRL I    &hmr RSHFT O       
 //╭──────20───────┼─────21─────┼──────22───────┼───────23──────┼───────24───────┼─────25─────┤ ├────26──────┼──────27───────┼──────28───────┼──────29───────┼────30─────┼──────31───────╮
-   &mt LCTRL ESC   &kp V        &kp W           &kp G           &kp M            &kp J          &kp MINUS    &kp DOT         &kp APOS        &kp Q           &kp Z       &kp SLASH
+   &mt LCTRL ESC   &kp Z        &kp X           &kp C           &kp D            &kp V          &kp K        &kp H           &kp COMMA       &kp DOT         &kp SLASH   &kp ENTER
 //╰───────────────┴────────────┴───────────────┼───────32──────┼───────33───────┼─────34─────┤ ├────35──────┼──────36───────┼──────37───────┼───────────────┴───────────┴───────────────╯
-                                                XXX             &kp R            XXX            &lt 1 BSPC   &mt RSHFT SPACE &lt 2 DELETE
+                                                XXX             &kp E            XXX            &lt 1 BSPC   &mt RSHFT SPACE &lt 2 DELETE
 //                                             ╰───────────────┴────────────────┴────────────╯ ╰────────────┴───────────────┴───────────────╯
                  >;
       };
