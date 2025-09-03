@@ -104,7 +104,7 @@
           timeout-ms = <COMBO_TIMEOUT>;
           key-positions = <0 1>;
           bindings = <&kp TAB>;
-        }
+        };
         // compatible = "zmk,combos";
         // combo_inside_tags {
         //      timeout-ms = <30>;
@@ -148,7 +148,7 @@
 
 
     keymap {
-        compatible = "zmk,keymap";       // missing tab, enter
+        compatible = "zmk,keymap";
 
       layer0  {
             display-name = "base";
