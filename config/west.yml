@@ -22,14 +22,10 @@ manifest:
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: v0.3.0
+      revision: v0.3
       import: app/west.yml
-    # Apply patch to fix child nodes issue
-    - name: zephyr
+    - name: zmk-adaptive-key
       remote: urob
-      revision: v3.5.0+zmk-fixes
-      clone-depth: 1
-      import:
-        name-allowlist: [lvgl]
+      revision: v0.3 # set to same as ZMK version above
   self:
     path: config
