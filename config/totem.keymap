@@ -25,16 +25,21 @@
 
 / {
     behaviors {
-				sr: shift_repeat {
+        magic: shift_repeat {
             compatible = "zmk,behavior-adaptive-key";
             #binding-cells = <0>;
             bindings = <&sk LSHFT>;
 
             repeat {
-                trigger-keys = <A B C D E F G H I J K L M N O P Q R S T U V W X Y Z>;
+                trigger-keys = <A D E F G I L M N O P Q R S T U V W X Y Z>;
                 bindings = <&key_repeat>;
                 max-prior-idle-ms = <350>;
                 strict-modifiers;
+            };
+            add_semi {
+                trigger-keys = <LEFT>;
+                bindings = <&kp RIGHT &kp SEMI &kp LEFT>;
+                max-prior-idle-ms = <350>;
             };
         };
         mt: mod_tap {
@@ -94,6 +99,19 @@
             bindings = <&parens_inside>;
         };
         compatible = "zmk,combos";
+        combo_backspace {
+            timeout-ms = <COMBO_TIMEOUT>;
+            key-positions = <8 9>;
+            bindings = <&kp BACKSPACE>;
+        };
+
+        compatible = "zmk,combos";
+        combo_escape {
+            timeout-ms = <COMBO_TIMEOUT>;
+            key-positions = <10 11>;
+            bindings = <&kp ESC>;
+        };
+        compatible = "zmk,combos";
         combo_inside_quotes {
             timeout-ms = <COMBO_TIMEOUT>;
             key-positions = <11 12>;
@@ -104,6 +122,12 @@
             timeout-ms = <COMBO_TIMEOUT>;
             key-positions = <12 13>;
             bindings = <&brackets_inside>;
+        };
+        compatible = "zmk,combos";
+        combo_enter {
+            timeout-ms = <COMBO_TIMEOUT>;
+            key-positions = <16 17>;
+            bindings = <&kp ENTER>;
         };
         compatible = "zmk,combos";
         combo_inside_braces {
@@ -117,12 +141,12 @@
           key-positions = <0 1>;
           bindings = <&kp TAB>;
         };
-        // compatible = "zmk,combos";
-        // combo_inside_tags {
-        //      timeout-ms = <30>;
-        //    key-positions = <27 28>;
-        //  bindings = <&tags_inside>;
-        // };
+        compatible = "zmk,combos";
+        combo_inside_tags {
+             timeout-ms = <COMBO_TIMEOUT>;
+           key-positions = <28 29>;
+         bindings = <&tags_inside>;
+        };
     };
 
     macros {
@@ -162,17 +186,18 @@
     keymap {
         compatible = "zmk,keymap";
 
+
       layer0  {
             display-name = "base";
             bindings = <
 //                ╭──────0─────┬──────1────────┬───────2───────┬───────3────────┬─────4──────╮ ╭─────5──────┬───────6───────┬───────7───────┬───────8───────┬─────9─────╮
-                   &kp Q        &kp W           &kp F           &kp L            &kp X          &kp J        &kp L           &kp U           &kp Y           &kp SEMI
+                   &kp Q        &kp W           &kp F           &kp P            &kp B          &kp J        &kp L           &kp U           &kp Y           &kp SEMI
 //                ├─────10─────┼──────11───────┼───────12──────┼───────13───────┼─────14─────┤ ├────15──────┼──────16───────┼──────17───────┼──────18───────┼────19─────┤
-                   &hmr LSHFT A &hml LCTRL R    &hml LALT S     &hml LGUI T      &kp G          &kp M        &hmr RGUI N     XXX             &hmr RCTRL I    &hmr RSHFT O       
+                   &hmr LSHFT A &hml LCTRL R    &hml LALT S     &hml LGUI T      &kp G          &kp M        &hmr RGUI N     &magic          &hmr RCTRL I    &hmr RSHFT O       
 //╭──────20───────┼─────21─────┼──────22───────┼───────23──────┼───────24───────┼─────25─────┤ ├────26──────┼──────27───────┼──────28───────┼──────29───────┼────30─────┼──────31───────╮
    &mt LCTRL ESC   &kp Z        &kp X           &kp C           &kp D            &kp V          &kp K        &kp H           &kp COMMA       &kp DOT         &kp SLASH   &kp ENTER
 //╰───────────────┴────────────┴───────────────┼───────32──────┼───────33───────┼─────34─────┤ ├────35──────┼──────36───────┼──────37───────┼───────────────┴───────────┴───────────────╯
-                                                XXX             &kp E            XXX            &lt 1 BSPC   &mt RSHFT SPACE &lt 2 DELETE
+                                                &to 3           &kp E            &kp UNDER      &lt 1 BSPC   &mt RSHFT SPACE &lt 2 DELETE
 //                                             ╰───────────────┴────────────────┴────────────╯ ╰────────────┴───────────────┴───────────────╯
                  >;
       };
@@ -187,35 +212,49 @@
 //╭──────20───────┼─────21─────┼──────22───────┼───────23──────┼───────24───────┼─────25─────┤ ├────26──────┼──────27───────┼──────28───────┼──────29───────┼────30─────┼──────31───────╮
    ___             ___          &kp N1          &kp N2          &kp N3           ___            ___          ___             ___             ___             ___         ___
 //╰───────────────┴────────────┴───────────────┼───────32──────┼───────33───────┼─────34─────┤ ├────35──────┼──────36───────┼──────37───────┼───────────────┴───────────┴───────────────╯
-                                                ___             ___              ___            ___          ___             ___         
+                                                ___             ___              ___            &to 0        ___             ___         
 //                                             ╰───────────────┴────────────────┴────────────╯ ╰────────────┴───────────────┴───────────────╯
               >;
-
         };
 
-        sym_func {
+       
+       layer2 {
+            display-name = "symbols";
             bindings = <
-           &kp ESC        &kp LEFT_BRACE        &kp RIGHT_BRACE        &none             &none             &kp F1   &kp F2           &kp F3   &kp F4   &kp F5
-           &kp TAB        &kp LBKT              &kp RBKT               &kp ENTER         &kp BSLH          &kp F6   &kp F7           &kp F8   &kp F9   &kp F10
-&kp GRAVE  &kp LESS_THAN  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp GREATER_THAN  &kp UNDERSCORE    &kp F11  &kp F12          &kp F13  &kp F14  &kp F15  &kp F16
-                                                &trans                 &trans            &trans            &none    &kp RIGHT_SHIFT  &none
+//                ╭──────0─────┬──────1────────┬───────2───────┬───────3────────┬─────4──────╮ ╭─────5──────┬───────6───────┬───────7───────┬───────8───────┬─────9─────╮
+                   ___          &kp AMPS        &kp STAR        &kp EQUAL        ___            ___          &kp LPAR        &kp RPAR        &kp APOS        &kp COLON
+//                ├─────10─────┼──────11───────┼───────12──────┼───────13───────┼─────14─────┤ ├────15──────┼──────16───────┼──────17───────┼──────18───────┼────19─────┤
+                   &kp MINUS    &kp DOLLAR      &kp PERCENT     &kp CARET        &kp PLUS       &kp BSLH     &kp LBKT        &kp RBKT        &kp DQT         &kp PIPE
+//╭──────20───────┼─────21─────┼──────22───────┼───────23──────┼───────24───────┼─────25─────┤ ├────26──────┼──────27───────┼──────28───────┼──────29───────┼────30─────┼──────31───────╮
+   ___             &kp TILDE    &kp EXCL        &kp AT          &kp HASH         ___            ___          &kp LBRC        &kp RBRC        &kp GRAVE       &kp QMARK   ___
+//╰───────────────┴────────────┴───────────────┼───────32──────┼───────33───────┼─────34─────┤ ├────35──────┼──────36───────┼──────37───────┼───────────────┴───────────┴───────────────╯
+                                                ___             ___              ___            ___          ___             ___         
+//                                             ╰───────────────┴────────────────┴────────────╯ ╰────────────┴───────────────┴───────────────╯
             >;
         };
 
-        device {
+
+        layer3 {
+            display-name = "function/bt";
             bindings = <
-       &none       &kp C_BRIGHTNESS_DEC  &kp C_BRIGHTNESS_INC  &none             &none    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
-       &kp K_MUTE  &kp C_VOLUME_DOWN     &kp C_VOLUME_UP       &kp C_PLAY_PAUSE  &none    &none         &none         &none         &none         &none
-&none  &none       &none                 &none                 &none             &none    &none         &none         &none         &none         &none         &bt BT_CLR
-                                         &none                 &none             &none    &none         &none         &none
+//                ╭──────0─────┬──────1────────┬───────2───────┬───────3────────┬─────4──────╮ ╭─────5──────┬───────6───────┬───────7───────┬───────8───────┬─────9─────╮
+                   &kp F12      &kp F7          &kp F8          &kp F9           ___            &bt BT_SEL 0 &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3    &bt BT_SEL 4
+//                ├─────10─────┼──────11───────┼───────12──────┼───────13───────┼─────14─────┤ ├────15──────┼──────16───────┼──────17───────┼──────18───────┼────19─────┤
+                   &kp F11      &kp F4          &kp F5          &kp F6           ___            ___          &kp RGUI        &kp RALT        &kp RCTRL       &kp RSHIFT
+//╭──────20───────┼─────21─────┼──────22───────┼───────23──────┼───────24───────┼─────25─────┤ ├────26──────┼──────27───────┼──────28───────┼──────29───────┼────30─────┼──────31───────╮
+   ___             &kp F10      &kp F1          &kp F2          &kp F3           ___            ___          ___             ___             ___             ___         &bt BT_CLR
+//╰───────────────┴────────────┴───────────────┼───────32──────┼───────33───────┼─────34─────┤ ├────35──────┼──────36───────┼──────37───────┼───────────────┴───────────┴───────────────╯
+                                                &to 0           &to 0            &to 0          &to 0        &to 0           &to 0       
+//                                             ╰───────────────┴────────────────┴────────────╯ ╰────────────┴───────────────┴───────────────╯
             >;
+
         };
 
         extra1 { status = "reserved"; };
 
         extra2 { status = "reserved"; };
 
-        extra3 {
+       extra3 {
             display-name = "clear";
             bindings = <
 //                ╭──────0─────┬──────1────────┬───────2───────┬───────3────────┬─────4──────╮ ╭─────5──────┬───────6───────┬───────7───────┬───────8───────┬─────9─────╮
