@@ -26,18 +26,24 @@
 
 / {
     behaviors {
-        magic: shift_repeat {
+        repeat_shift: repeat_alpha_or_oneshot_shift {
             compatible = "zmk,behavior-adaptive-key";
             #binding-cells = <0>;
             bindings = <&sk LSHFT>;
 
             repeat {
-                trigger-keys = <A D F G I L M N O P Q R S T U W Z>;
+                trigger-keys = <A B C D E F G H I J K L M N O P Q R S T U V W X Y Z>;
                 bindings = <&key_repeat>;
                 max-prior-idle-ms = <MAGIC_PRIOR_IDLE>;
                 strict-modifiers;
             };
-
+        };
+        ak_e: adaptive_key_e {
+            compatible = "zmk,behavior-adaptive-key";
+            #binding-cells = <0>;
+            bindings = <&hmr RALT E>;
+//          
+//          after move_inside behavior below, this adds a semicolon and jumps back in the brackets.
             add_semi {
                 trigger-keys = <LEFT>;
                 bindings = <&kp RIGHT &kp SEMI &kp LEFT &kp LEFT>;
@@ -49,6 +55,8 @@
             #binding-cells = <0>;
             bindings = <&hmr RGUI N>;
 
+//          I like typing closing braces/quotes/etc before filling them.
+//          This behavior moves me inside.
             move_inside {
                 trigger-keys = <RPAR RBKT RBRC GREATER_THAN APOS DQT>;
                 bindings = <&kp LEFT>;
@@ -210,11 +218,11 @@
 //                ╭──────0─────┬──────1────────┬───────2───────┬───────3────────┬─────4──────╮ ╭─────5──────┬───────6───────┬───────7───────┬───────8───────┬─────9─────╮
                    &kp Q        &kp W           &kp F           &kp P            &kp B          &kp J        &kp L           &kp U           &kp Y           &kp SEMI
 //                ├─────10─────┼──────11───────┼───────12──────┼───────13───────┼─────14─────┤ ├────15──────┼──────16───────┼──────17───────┼──────18───────┼────19─────┤
-                   &hmr LSHFT A &hml LCTRL R    &hml LALT S     &hml LGUI T      &kp G          &kp M        &ak_n           &magic          &hmr RCTRL I    &hmr RSHFT O       
+                   &hmr LSHFT A &hml LCTRL R    &hml LALT S     &hml LGUI T      &kp G          &kp M        &ak_n           &ak_e           &hmr RCTRL I    &hmr RSHFT O       
 //╭──────20───────┼─────21─────┼──────22───────┼───────23──────┼───────24───────┼─────25─────┤ ├────26──────┼──────27───────┼──────28───────┼──────29───────┼────30─────┼──────31───────╮
    &mt LCTRL ESC   &kp Z        &kp X           &kp C           &kp D            &kp V          &kp K        &kp H           &kp COMMA       &kp DOT         &kp SLASH   &kp ENTER
 //╰───────────────┴────────────┴───────────────┼───────32──────┼───────33───────┼─────34─────┤ ├────35──────┼──────36───────┼──────37───────┼───────────────┴───────────┴───────────────╯
-                                                &to 3           &kp E            &lt 1 UNDER    &lt 1 BSPC   &mt RSHFT SPACE &lt 2 DELETE
+                                                &mo 3           &repeat_shift    &lt 1 UNDER    &lt 1 BSPC   &mt RSHFT SPACE &lt 2 DELETE
 //                                             ╰───────────────┴────────────────┴────────────╯ ╰────────────┴───────────────┴───────────────╯
                  >;
       };
