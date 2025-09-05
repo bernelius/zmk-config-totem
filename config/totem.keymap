@@ -17,7 +17,7 @@
 #define COMBO_TIMEOUT 30
 #define ___ &trans
 #define XXX &none
-#define MAGIC_PRIOR_IDLE
+#define MAGIC_PRIOR_IDLE 350
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
