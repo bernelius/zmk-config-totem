@@ -42,7 +42,7 @@
                 trigger-keys = <RPAR RBKT RBRC GREATER_THAN APOS DQT>;
                 bindings = <&kp LEFT>;
                 max-prior-idle-ms = <MAGIC_PRIOR_IDLE>;
-            }
+            };
 
             add_semi {
                 trigger-keys = <LEFT>;
