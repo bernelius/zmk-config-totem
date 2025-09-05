@@ -35,7 +35,7 @@ layers:
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: function/bt, h: toggle}
   - E
-  - _
+  - {t: _, h: nav}
   - {t: '$$mdi:backspace$$', h: nav}
   - {t: '$$mdi:keyboard-space$$', h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '$$mdi:backspace-reverse-outline$$', h: symbols}
@@ -74,8 +74,8 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: base, h: toggle, type: held}
+  - {type: held}
+  - {t: base, h: toggle, type: held alternate}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   symbols:
@@ -152,7 +152,7 @@ layers:
   - $$mdi:bluetooth-off$$
   - {t: base, h: toggle}
   - {t: base, h: toggle}
-  - {t: base, h: toggle}
+  - {t: base, h: toggle, type: held}
   - {t: base, h: toggle, type: held}
   - {t: base, h: toggle}
   - {t: base, h: toggle, type: held}
@@ -197,22 +197,22 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
 combos:
 - p: [1, 2]
-  k: '&apos_inside'
+  k: '&apos'
 - p: [2, 3]
-  k: '&parens_inside'
+  k: '&parens'
 - p: [8, 9]
   k: {t: '$$mdi:backspace$$', type: backspace}
 - p: [10, 11]
   k: $$mdi:keyboard-esc$$
 - p: [11, 12]
-  k: '&quotes_inside'
+  k: '&quotes'
 - p: [12, 13]
-  k: '&brackets_inside'
+  k: '&brackets'
 - p: [16, 17]
   k: {t: '$$mdi:keyboard-return$$', type: enter}
 - p: [23, 24]
-  k: '&braces_inside'
+  k: '&braces'
 - p: [0, 1]
   k: $$mdi:keyboard-tab$$
 - p: [28, 29]
-  k: '&tags_inside'
+  k: '&tags'
