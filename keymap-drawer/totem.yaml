@@ -18,7 +18,7 @@ layers:
   - G
   - M
   - '&ak_n'
-  - '&magic'
+  - '&ak_e'
   - {t: I, h: '$$mdi:apple-keyboard-control$$'}
   - {t: O, h: '$$mdi:apple-keyboard-shift$$'}
   - {t: '$$mdi:keyboard-esc$$', h: '$$mdi:apple-keyboard-control$$'}
@@ -33,8 +33,8 @@ layers:
   - {t: ., s: '>'}
   - {t: /, s: '?'}
   - {t: '$$mdi:keyboard-return$$', type: enter}
-  - {t: function/bt, h: toggle}
-  - E
+  - function/bt
+  - '&repeat_shift'
   - {t: _, h: nav}
   - {t: '$$mdi:backspace$$', h: nav}
   - {t: '$$mdi:keyboard-space$$', h: '$$mdi:apple-keyboard-shift$$'}
@@ -150,12 +150,12 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:bluetooth-off$$
-  - {t: base, h: toggle}
-  - {t: base, h: toggle}
-  - {t: base, h: toggle, type: held}
   - {t: base, h: toggle, type: held}
   - {t: base, h: toggle}
-  - {t: base, h: toggle, type: held}
+  - {t: base, h: toggle, type: held alternate}
+  - {t: base, h: toggle, type: held alternate}
+  - {t: base, h: toggle}
+  - {t: base, h: toggle, type: held alternate}
   clear:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
