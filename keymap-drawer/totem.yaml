@@ -17,7 +17,7 @@ layers:
   - {t: T, h: LGUI}
   - G
   - M
-  - {t: N, h: RGUI}
+  - '&ak_n'
   - '&magic'
   - {t: I, h: '$$mdi:apple-keyboard-control$$'}
   - {t: O, h: '$$mdi:apple-keyboard-shift$$'}
